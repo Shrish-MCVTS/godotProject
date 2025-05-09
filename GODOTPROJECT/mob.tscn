@@ -1,0 +1,68 @@
+[gd_scene load_steps=10 format=3 uid="uid://b3nkwy5rdm72y"]
+
+[ext_resource type="Script" path="res://mob.gd" id="1_2w0xa"]
+[ext_resource type="Texture2D" uid="uid://cpy123s7r1yur" path="res://art/enemyFlyingAlt_1.png" id="1_l3bu8"]
+[ext_resource type="Texture2D" uid="uid://dvegnk82o7qon" path="res://art/enemyFlyingAlt_2.png" id="2_4at6q"]
+[ext_resource type="Texture2D" uid="uid://cpjngm6tj882b" path="res://art/enemySwimming_1.png" id="3_67d2i"]
+[ext_resource type="Texture2D" uid="uid://dyn28aeoagdr5" path="res://art/enemySwimming_2.png" id="4_hn6mi"]
+[ext_resource type="Texture2D" uid="uid://cmbhunwln6g4n" path="res://art/enemyWalking_1.png" id="5_gcmfe"]
+[ext_resource type="Texture2D" uid="uid://ilxeh4b8kl01" path="res://art/enemyWalking_2.png" id="6_qtoll"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m3pie"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_l3bu8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_4at6q")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_67d2i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_hn6mi")
+}],
+"loop": true,
+"name": &"swim",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_gcmfe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_qtoll")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 3.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s64rm"]
+radius = 38.0
+height = 106.0
+
+[node name="Mob" type="RigidBody2D"]
+collision_mask = 0
+gravity_scale = 0.0
+script = ExtResource("1_2w0xa")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.75, 0.75)
+sprite_frames = SubResource("SpriteFrames_m3pie")
+animation = &"walk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, -3)
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_s64rm")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(1, 0.499999)
+scale = Vector2(5.1, 3.75)
